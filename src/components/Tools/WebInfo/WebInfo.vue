@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { t } from '@/i18n'
 
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import DetailHeader from '@/components/Layout/DetailHeader/DetailHeader.vue'
 // import { copy } from '@/utils/string'
 import { Jh_getTimeStamp } from '@/utils/time'
@@ -17,6 +17,8 @@ const info = reactive({
 const toolsStore = useToolsStore()
 
 const searchUrl = ref()
+// el-link 跳转用的完整链接（放在 computed 中，避免模板内的字符串拼接表达式触发 vue-tsc 类型检查异常）
+const linkUrl = computed(() => 'https://' + searchUrl.value)
 
 const getWebInfo = async () => {
   try {
@@ -77,7 +79,7 @@ const down = () => {
         <ul>
           <li class="mt-3">
             <el-text><b>{{ t("域名:") }}</b></el-text>
-            <el-link :href="'https://' + searchUrl" type="primary" target="_blank">{{ searchUrl }}</el-link>
+            <el-link :href="linkUrl" type="primary" target="_blank">{{ searchUrl }}</el-link>
           </li>
           <li class="mt-3 flex">
             <el-text><b>logo: </b></el-text>
