@@ -9,16 +9,20 @@ import { t } from '@/i18n'
     <div class="p-5 w-2/3">
       <h1 class="text-2xl font-bold">{{ t("关于 Tools-Web") }}</h1>
       <p class="mt-6">
-        <el-text><el-link href="https://github.com/naroat/tools-web" target="_blank" type="primary">Tools-Web</el-link>{{ t("是一款免费开源的轻量在线工具箱，包含开发、文本、媒体、图表、生活、查询等实用工具；如果对您有帮助，请将其分享给您的朋友，并且添加到收藏夹中！顺便再点个⭐️吧！") }}</el-text>
+        <el-text><el-link href="https://github.com/fzyanlei/tools-web/tree/master" target="_blank" type="primary">Tools-Web</el-link>{{ t("是一款免费开源的轻量在线工具箱，包含开发、文本、媒体、图表、生活、查询等实用工具；如果对您有帮助，请将其分享给您的朋友，并且添加到收藏夹中！顺便再点个⭐️吧！") }}</el-text>
       </p>
 
       <h1 class="text-2xl font-bold mt-6 mb-6">{{ t("技术") }}</h1>
       <p>
-        <el-text>{{ t("主要基于Vite + Vue + ElementPlus + Typescript + TailwindCss开发，某些工具使用了第三方开源库，您可以在仓库的") }}<el-link href="https://github.com/naroat/tools-web/blob/master/package.json" target="_blank" type="primary">package.json</el-link>{{ t("文件中找到完整的列表。") }}</el-text>
+        <el-text>{{ t("主要基于Vite + Vue + ElementPlus + Typescript + TailwindCss开发，某些工具使用了第三方开源库，您可以在仓库的") }}<el-link href="https://github.com/fzyanlei/tools-web/blob/master/package.json" target="_blank" type="primary">package.json</el-link>{{ t("文件中找到完整的列表。") }}</el-text>
       </p>
       <h1 class="text-2xl font-bold mt-6 mb-6">{{ t("发现了 Bug？") }}</h1>
       <p>
-        <el-text>{{ t("如果您发现了 Bug，或者某些功能未能按预期工作，请在 GitHub 仓库的") }}<el-link type="primary" target="_blank" href="https://github.com/naroat/tools-web/issues/new" class="">issues</el-link>{{ t("中提交错误报告。") }}</el-text>
+        <el-text>{{ t("如果您发现了 Bug，或者某些功能未能按预期工作，请在 GitHub 仓库的") }}<el-link type="primary" target="_blank" href="https://github.com/fzyanlei/tools-web/issues/new" class="">issues</el-link>{{ t("中提交错误报告。") }}</el-text>
+      </p>
+      <h1 class="text-2xl font-bold mt-6 mb-6">{{ t("联系方式") }}</h1>
+      <p>
+        <el-text>{{ t("如需反馈问题、提交建议或进行合作沟通，可通过邮箱联系：fzyanlei0645@163.com") }}</el-text>
       </p>
     </div>
   </div>
