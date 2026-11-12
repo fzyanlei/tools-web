@@ -21,7 +21,7 @@ const codes = [
   <el-dialog
     :model-value="modelValue"
     :title="t('赞助支持')"
-    width="520px"
+    width="min(520px, 92vw)"
     align-center
     @update:model-value="emit('update:modelValue', $event)"
   >
@@ -41,10 +41,3 @@ const codes = [
     </div>
   </el-dialog>
 </template>
-
-<style scoped>
-/* 小屏时限制弹窗宽度，避免 520px 固定宽超出屏幕 */
-:deep(.el-dialog) {
-  max-width: 92vw;
-}
-</style>
