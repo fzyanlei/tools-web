@@ -4,6 +4,16 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import {seoperender} from "./ssr.config";
 
+// vite.config.ts
+import seoPrerender from 'vite-plugin-seo-prerender';
+
+export default defineConfig({
+  plugins: [
+    // 只有当 SKIP_PRERENDER 环境变量不为 'true' 时才启用预渲染
+    process.env.SKIP_PRERENDER !== 'true' && seoPrerender({ /* ... */ }),
+  ],
+});
+
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
   let env = loadEnv(mode, process.cwd())
