@@ -9,8 +9,11 @@ import 'element-plus/theme-chalk/display.css'
 import { ToolsInfo } from '@/components/Tools/tools.type.ts';
 
 import router from '@/router';
+import SponsorDialog from '@/components/Layout/Header/SponsorDialog.vue'
 // const isNavDrawer = ref(false)
 const loading = ref(false)
+//赞助弹窗显隐
+const sponsorVisible = ref(false)
 const options = ref<ToolsInfo[]>([])
 //store
 const toolsStore = useToolsStore()
@@ -172,11 +175,22 @@ onMounted(() => {
             </a>
           </el-tooltip>
         </li>
+        <!-- sponsor -->
+        <li class="ml-3">
+          <el-button
+            type="primary"
+            class="bg-gradient-to-r from-pink-500 to-red-500"
+            :aria-label="t('赞助')"
+            @click="sponsorVisible = true"
+          >❤️ <span class="c-xs:hidden">{{ t('赞助') }}</span></el-button>
+        </li>
 
         <li class="hover:text-blue-500 c-xs:hidden">
           <el-button type="primary" class="ml-3 bg-gradient-to-r from-cyan-500 to-blue-500" @click="createUrlShortcut">{{ t("保存到桌面") }}</el-button>
         </li>
       </ul>
+      <!-- 赞助弹窗 -->
+      <SponsorDialog v-model="sponsorVisible" />
     </div>
   </header>
 </template>
