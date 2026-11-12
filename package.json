@@ -75,5 +75,8 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-router": "^4.2.5",
     "vue-tsc": "^3.2.5"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": ["canvas"]
   }
 }
