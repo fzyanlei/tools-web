@@ -15,7 +15,7 @@ const info = reactive({
 邮箱1：demo@163.com
 邮箱2：demo2@163.com
 手机号：13012341234
-url: http://tools.ranblogs.com、https://ranblogs.com
+url: http://www.tools-web.top、https://tools-web.top
 IP: 192.168.0.1
 时间：2023-11-24
 `,
