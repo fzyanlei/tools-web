@@ -24,8 +24,8 @@ export const adSlots: Record<string, AdSlot> = {
   },
   /** 首页底部横幅（手机端 320x50） */
   mobileBanner: {
-    adKey: '',
-    scriptSrc: '',
+    adKey: 'bc59a7dc1b97eb9eadc4fb8af5c3ec84',
+    scriptSrc: 'https://bauval.org/22/bc59a7dc1b97eb9eadc4fb8af5c3ec84',
     width: 320,
     height: 50,
   },
