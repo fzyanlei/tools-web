@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { locale } from '@/i18n'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
@@ -7,11 +8,13 @@ import Header from '@/components/Layout/Header/Header.vue'
 import Left from '@/components/Layout/Left/Left.vue'
 import Floor from '@/components/Layout/Floor/Floor.vue'
 import AdsterraAd from '@/components/AdsterraAd.vue'
+import { adSlots } from '@/components/ads'
 // import Right from '@/components/Layout/Right/Right.vue'
 import { useComponentStore } from '@/store/modules/component'
 
 //store
 const componentStore = useComponentStore()
+const route = useRoute()
 const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
 
 </script>
@@ -46,8 +49,12 @@ const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
             <component :is="Component" :key="route.path"></component>
           </transition>
         </router-view>
+        <!-- 工具详情页内容下方的矩形广告（首页横幅由 Home.vue 单独控制） -->
+        <AdsterraAd
+          v-if="route.path !== '/' && adSlots.rectangle.adKey"
+          v-bind="adSlots.rectangle"
+        />
       </el-main>
-      <AdsterraAd />
       <el-footer class="md:mb-6 mt-12 c-xs:mb-12">
         <Floor />
       </el-footer>
