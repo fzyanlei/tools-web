@@ -644,6 +644,28 @@ export const constantRoute = [
       description: '',
     }
   },
+  // 隐私政策
+  {
+    path: '/privacy',
+    component: () => import('@/views/PrivacyPolicy.vue'),
+    name: 'privacy',
+    meta: {
+      title: "Privacy Policy",
+      keywords: 'privacy policy',
+      description: 'Privacy Policy for Tools-Web',
+    }
+  },
+  // Cookie 政策
+  {
+    path: '/cookies',
+    component: () => import('@/views/CookiePolicy.vue'),
+    name: 'cookies',
+    meta: {
+      title: "Cookie Policy",
+      keywords: 'cookie policy',
+      description: 'Cookie Policy for Tools-Web',
+    }
+  },
   //其他路由
   {
     path: '/404',

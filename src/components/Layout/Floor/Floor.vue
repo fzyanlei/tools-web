@@ -7,7 +7,12 @@ const currentYear: number = new Date().getFullYear();
 
 <template>
   <div class="w-full rounded-2xl z-10 p-5 text-center tech-footer">
-    <el-text>{{ t(appDesc) }}  © {{ currentYear }} <a href="https://github.com/naroat/tools-web" target="_blank" class="text-blue-700 tech-link">Tools-Web</a></el-text>
+    <el-text>{{ t(appDesc) }}  © {{ currentYear }} <a href="https://github.com/fzyanlei/tools-web" target="_blank" class="text-blue-700 tech-link">Tools-Web</a></el-text>
+    <div class="mt-2 text-sm">
+      <router-link to="/privacy" class="text-blue-700 tech-link">Privacy Policy</router-link>
+      <span class="mx-2 text-gray-400">·</span>
+      <router-link to="/cookies" class="text-blue-700 tech-link">Cookie Policy</router-link>
+    </div>
   </div>
 </template>
 
