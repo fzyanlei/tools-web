@@ -144,13 +144,13 @@ body {
   background: linear-gradient(180deg, #667eea, #764ba2);
 }
 
-/* 浮动广告条展示期间为页面底部预留空间，避免遮挡页脚 */
+/* 浮动广告条展示期间为页面底部预留空间，避免遮挡页脚（广告高 + 容器内边距） */
 body:has(.floating-ad-bar) {
-  padding-bottom: 90px;
+  padding-bottom: 98px;
 }
 @media (max-width: 768px) {
   body:has(.floating-ad-bar) {
-    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+    padding-bottom: calc(58px + env(safe-area-inset-bottom));
   }
 }
 </style>
