@@ -31,8 +31,8 @@ export const adSlots: Record<string, AdSlot> = {
   },
   /** 工具详情页内容下方的矩形广告（300x250） */
   rectangle: {
-    adKey: '',
-    scriptSrc: '',
+    adKey: '38df937fe900152d7744497705ed4c96',
+    scriptSrc: 'https://bauval.org/22/38df937fe900152d7744497705ed4c96',
     width: 300,
     height: 250,
   },
