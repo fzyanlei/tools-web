@@ -5,8 +5,6 @@ import { onMounted } from 'vue';
 import { RouterLink } from "vue-router"
 import { StarFilled } from '@element-plus/icons-vue'
 import { useToolsStore } from '@/store/modules/tools'
-import AdsterraAd from '@/components/AdsterraAd.vue'
-import { adSlots } from '@/components/ads'
 import { ElMessage } from 'element-plus'
 import { useRoute } from "vue-router"
 //store
@@ -101,20 +99,8 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- 首页底部横幅广告：电脑端 728x90，手机端 320x50 -->
-    <AdsterraAd
-      v-if="adSlots.desktopBanner.adKey"
-      v-bind="adSlots.desktopBanner"
-      class="c-xs:hidden"
-    />
-    <AdsterraAd
-      v-if="adSlots.mobileBanner.adKey"
-      v-bind="adSlots.mobileBanner"
-      class="hidden c-xs:flex"
-    />
-
-    <!-- 返回顶部 -->
-    <el-backtop :right="10" :bottom="50" />
+    <!-- 返回顶部（上移避开底部浮动广告条） -->
+    <el-backtop :right="10" :bottom="100" />
   </div>
 </template>
 

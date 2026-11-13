@@ -8,6 +8,7 @@ import Header from '@/components/Layout/Header/Header.vue'
 import Left from '@/components/Layout/Left/Left.vue'
 import Floor from '@/components/Layout/Floor/Floor.vue'
 import AdsterraAd from '@/components/AdsterraAd.vue'
+import FloatingAdBar from '@/components/FloatingAdBar.vue'
 import { adSlots } from '@/components/ads'
 // import Right from '@/components/Layout/Right/Right.vue'
 import { useComponentStore } from '@/store/modules/component'
@@ -49,16 +50,20 @@ const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
             <component :is="Component" :key="route.path"></component>
           </transition>
         </router-view>
-        <!-- 工具详情页内容下方的矩形广告（首页横幅由 Home.vue 单独控制） -->
+        <!-- 工具详情页内容下方的矩形广告（横幅由底部浮动广告条全局展示） -->
         <AdsterraAd
           v-if="route.path !== '/' && adSlots.rectangle.adKey"
           v-bind="adSlots.rectangle"
+          class="my-5"
         />
       </el-main>
       <el-footer class="md:mb-6 mt-12 c-xs:mb-12">
         <Floor />
       </el-footer>
     </el-container>
+
+    <!-- 底部浮动广告条：10 秒倒计时后可关闭 -->
+    <FloatingAdBar />
 
   </el-container>
   </el-config-provider>
@@ -137,5 +142,15 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #667eea, #764ba2);
+}
+
+/* 浮动广告条展示期间为页面底部预留空间，避免遮挡页脚 */
+body:has(.floating-ad-bar) {
+  padding-bottom: 90px;
+}
+@media (max-width: 768px) {
+  body:has(.floating-ad-bar) {
+    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+  }
 }
 </style>

@@ -59,7 +59,7 @@ onMounted(() => {
 <template>
   <div
     ref="adContainer"
-    class="mx-auto my-5 flex justify-center overflow-hidden"
+    class="mx-auto flex justify-center overflow-hidden"
     :style="{ width: `${props.width}px`, height: `${props.height}px` }"
   ></div>
 </template>
