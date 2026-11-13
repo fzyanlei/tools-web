@@ -40,10 +40,8 @@ function updatePageMetadata(): void {
     : String(route.meta.description || defaultDescription || '')
   const siteName = t(import.meta.env.VITE_APP_TITLE)
 
-  // 标题优先使用当前页面标题；缺少页面标题时回退到站点名称和站点描述。
-  document.title = title
-    ? `${title} - ${siteName}`
-    : `${siteName} - ${t(defaultDescription)}`
+  // 标题优先使用当前页面标题；缺少页面标题时回退到站点名称，站点名称也为空时兜底为「工具坊」。
+  document.title = title || siteName || '工具坊'
 
   // 英文关键词由标题和描述组合生成，其他语言优先读取路由配置。
   const keywords = locale.value === 'en'
