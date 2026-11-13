@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { locale } from '@/i18n'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -9,6 +9,7 @@ import Left from '@/components/Layout/Left/Left.vue'
 import Floor from '@/components/Layout/Floor/Floor.vue'
 import AdsterraAd from '@/components/AdsterraAd.vue'
 import FloatingAdBar from '@/components/FloatingAdBar.vue'
+import FloatingSideAd from '@/components/FloatingSideAd.vue'
 import { adSlots } from '@/components/ads'
 // import Right from '@/components/Layout/Right/Right.vue'
 import { useComponentStore } from '@/store/modules/component'
@@ -17,6 +18,11 @@ import { useComponentStore } from '@/store/modules/component'
 const componentStore = useComponentStore()
 const route = useRoute()
 const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
+
+// 桌面/手机断点（与 Tailwind c-xs 一致）：决定矩形广告展示为右侧悬浮还是内嵌
+const mobileQuery = window.matchMedia('(max-width: 768px)')
+const isMobile = ref(mobileQuery.matches)
+mobileQuery.addEventListener('change', (e) => (isMobile.value = e.matches))
 
 </script>
 
@@ -50,9 +56,9 @@ const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
             <component :is="Component" :key="route.path"></component>
           </transition>
         </router-view>
-        <!-- 工具详情页内容下方的矩形广告（横幅由底部浮动广告条全局展示） -->
+        <!-- 手机端详情页：矩形广告内嵌于工具区下方 -->
         <AdsterraAd
-          v-if="route.path !== '/' && adSlots.rectangle.adKey"
+          v-if="route.path !== '/' && isMobile && adSlots.rectangle.adKey"
           v-bind="adSlots.rectangle"
           class="my-5"
         />
@@ -62,8 +68,11 @@ const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
       </el-footer>
     </el-container>
 
-    <!-- 底部浮动广告条：10 秒倒计时后可关闭 -->
+    <!-- 底部浮动广告条：广告加载后显示，10 秒倒计时后可关闭 -->
     <FloatingAdBar />
+
+    <!-- 桌面端详情页：右侧悬浮矩形广告（手机端为内嵌，见 el-main 内） -->
+    <FloatingSideAd v-if="route.path !== '/' && !isMobile && adSlots.rectangle.adKey" />
 
   </el-container>
   </el-config-provider>

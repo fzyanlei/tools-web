@@ -11,7 +11,7 @@ declare global {
 </script>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const props = defineProps<{
   /** Adsterra 后台的广告位 key */
@@ -24,11 +24,42 @@ const props = defineProps<{
   height: number
 }>()
 
+/** 广告 iframe 渲染并加载完成后触发，供浮动容器决定何时显示广告框 */
+const emit = defineEmits<{ (e: 'loaded'): void }>()
+
 const adContainer = ref<HTMLDivElement>()
+
+let observer: MutationObserver | undefined
+let loadedEmitted = false
+
+const notifyLoaded = () => {
+  if (loadedEmitted) return
+  loadedEmitted = true
+  emit('loaded')
+}
 
 onMounted(() => {
   // key 未配置的广告位（占位条目）跳过加载
   if (!props.adKey || !props.scriptSrc) return
+
+  const container = adContainer.value
+  if (!container) return
+
+  // 广告 iframe 由 invoke 脚本异步插入：检测到 iframe 并等其加载完成后通知父级
+  observer = new MutationObserver(() => {
+    const iframe = container.querySelector('iframe')
+    if (iframe) {
+      iframe.addEventListener('load', notifyLoaded, { once: true })
+      // 同步加载的 iframe（如 about:blank）可能在绑定前已完成 load，兜底检查
+      try {
+        if (iframe.contentWindow?.document?.readyState === 'complete') notifyLoaded()
+      } catch {
+        // 跨域 iframe 无法读取 readyState，等待 load 事件即可
+      }
+      observer?.disconnect()
+    }
+  })
+  observer.observe(container, { childList: true, subtree: true })
 
   // 把本次加载接到队列末尾，保证 atOptions 的设置与脚本读取一一对齐
   const waitPrevious = previousAdLoaded
@@ -54,6 +85,8 @@ onMounted(() => {
     })
   })
 })
+
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
@@ -63,3 +96,12 @@ onMounted(() => {
     :style="{ width: `${props.width}px`, height: `${props.height}px` }"
   ></div>
 </template>
+
+<style scoped>
+/* 广告 iframe 撑满占位容器，消除投放内容与占位之间的空隙 */
+:deep(iframe) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+</style>
