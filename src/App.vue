@@ -6,6 +6,7 @@ import en from 'element-plus/es/locale/lang/en'
 import Header from '@/components/Layout/Header/Header.vue'
 import Left from '@/components/Layout/Left/Left.vue'
 import Floor from '@/components/Layout/Floor/Floor.vue'
+import AdsterraAd from '@/components/AdsterraAd.vue'
 // import Right from '@/components/Layout/Right/Right.vue'
 import { useComponentStore } from '@/store/modules/component'
 
@@ -46,6 +47,7 @@ const elementLocale = computed(() => locale.value === 'en' ? en : zhCn)
           </transition>
         </router-view>
       </el-main>
+      <AdsterraAd />
       <el-footer class="md:mb-6 mt-12 c-xs:mb-12">
         <Floor />
       </el-footer>
