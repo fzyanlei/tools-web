@@ -12,8 +12,8 @@ const emit = defineEmits<{
 
 // 二维码数据：图片路径与文案 key
 const codes = [
-  { img: '/images/wx.png', alt: '微信赞赏码', title: '微信赞赏', tip: '用微信扫一扫' },
-  { img: '/images/zfb.png', alt: '支付宝收款码', title: '支付宝', tip: '用支付宝扫一扫' },
+  { img: '/images/wx.webp', alt: '微信赞赏码', title: '微信赞赏', tip: '用微信扫一扫' },
+  { img: '/images/zfb.webp', alt: '支付宝收款码', title: '支付宝', tip: '用支付宝扫一扫' },
 ]
 </script>
 
