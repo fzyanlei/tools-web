@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Close } from '@element-plus/icons-vue'
-import AdsterraAd from '@/components/AdsterraAd.vue'
+import AdsterraIframeAd from '@/components/AdsterraIframeAd.vue'
 import { adSlots } from '@/components/ads'
 import { useAdReveal } from '@/components/useAdReveal'
 
@@ -17,7 +17,7 @@ const { adLoaded, visible, countdown, onLoaded, close } = useAdReveal(COUNTDOWN_
       class="pointer-events-auto relative rounded-xl bg-white p-1 shadow-[0_4px_16px_rgba(0,0,0,0.18)] transition-opacity duration-300"
       :class="adLoaded ? 'opacity-100' : 'pointer-events-none opacity-0'"
     >
-      <AdsterraAd v-if="adSlots.rectangle.adKey" v-bind="adSlots.rectangle" @loaded="onLoaded" />
+      <AdsterraIframeAd v-if="adSlots.rectangle.src" v-bind="adSlots.rectangle" @loaded="onLoaded" />
       <!-- 倒计时结束前显示剩余秒数，结束后变为可点击的关闭按钮 -->
       <button
         v-if="adLoaded && countdown <= 0"

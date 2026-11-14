@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Close } from '@element-plus/icons-vue'
-import AdsterraAd from '@/components/AdsterraAd.vue'
+import AdsterraIframeAd from '@/components/AdsterraIframeAd.vue'
 import { adSlots } from '@/components/ads'
 import { useAdReveal } from '@/components/useAdReveal'
 
@@ -21,12 +21,12 @@ const { adLoaded, visible, countdown, onLoaded, close } = useAdReveal(COUNTDOWN_
         :class="adLoaded ? 'floating-ad-bar opacity-100' : 'pointer-events-none opacity-0'"
       >
         <!-- 桌面端横幅 728x90 -->
-        <div v-if="adSlots.desktopBanner.adKey" class="c-xs:hidden">
-          <AdsterraAd v-bind="adSlots.desktopBanner" @loaded="onLoaded" />
+        <div v-if="adSlots.desktopBanner.src" class="c-xs:hidden">
+          <AdsterraIframeAd v-bind="adSlots.desktopBanner" @loaded="onLoaded" />
         </div>
         <!-- 手机端横幅 320x50 -->
-        <div v-if="adSlots.mobileBanner.adKey" class="hidden c-xs:block">
-          <AdsterraAd v-bind="adSlots.mobileBanner" @loaded="onLoaded" />
+        <div v-if="adSlots.mobileBanner.src" class="hidden c-xs:block">
+          <AdsterraIframeAd v-bind="adSlots.mobileBanner" @loaded="onLoaded" />
         </div>
       </div>
       <!-- 倒计时结束前显示剩余秒数，结束后变为可点击的关闭按钮 -->

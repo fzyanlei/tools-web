@@ -14,7 +14,7 @@ export function useAdReveal(countdownSeconds: number) {
 
   let timer: ReturnType<typeof setInterval> | undefined
 
-  /** 由 AdsterraAd 的 loaded 事件触发，只生效一次 */
+  /** 由 AdsterraIframeAd 的 loaded 事件触发，只生效一次 */
   const onLoaded = () => {
     if (adLoaded.value) return
     adLoaded.value = true

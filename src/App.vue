@@ -7,9 +7,9 @@ import en from 'element-plus/es/locale/lang/en'
 import Header from '@/components/Layout/Header/Header.vue'
 import Left from '@/components/Layout/Left/Left.vue'
 import Floor from '@/components/Layout/Floor/Floor.vue'
-import AdsterraAd from '@/components/AdsterraAd.vue'
 import FloatingAdBar from '@/components/FloatingAdBar.vue'
 import FloatingSideAd from '@/components/FloatingSideAd.vue'
+import AdsterraIframeAd from '@/components/AdsterraIframeAd.vue'
 import { adSlots } from '@/components/ads'
 // import Right from '@/components/Layout/Right/Right.vue'
 import { useComponentStore } from '@/store/modules/component'
@@ -57,8 +57,8 @@ mobileQuery.addEventListener('change', (e) => (isMobile.value = e.matches))
           </transition>
         </router-view>
         <!-- 手机端详情页：矩形广告内嵌于工具区下方 -->
-        <AdsterraAd
-          v-if="route.path !== '/' && isMobile && adSlots.rectangle.adKey"
+        <AdsterraIframeAd
+          v-if="route.path !== '/' && isMobile && adSlots.rectangle.src"
           v-bind="adSlots.rectangle"
           class="my-5"
         />
@@ -72,7 +72,7 @@ mobileQuery.addEventListener('change', (e) => (isMobile.value = e.matches))
     <FloatingAdBar />
 
     <!-- 桌面端详情页：右侧悬浮矩形广告（手机端为内嵌，见 el-main 内） -->
-    <FloatingSideAd v-if="route.path !== '/' && !isMobile && adSlots.rectangle.adKey" />
+    <FloatingSideAd v-if="route.path !== '/' && !isMobile && adSlots.rectangle.src" />
 
   </el-container>
   </el-config-provider>
